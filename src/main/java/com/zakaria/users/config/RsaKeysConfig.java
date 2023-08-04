@@ -1,9 +1,10 @@
 package com.zakaria.users.config;
 
-import org.bouncycastle.asn1.eac.RSAPublicKey;
-import org.bouncycastle.asn1.pkcs.RSAPrivateKey;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
+import java.security.interfaces.RSAPrivateKey;
+import java.security.interfaces.RSAPublicKey;
+
 @ConfigurationProperties(prefix = "rsa")
-public record RsaKeysConfig(RSAPublicKey rsaPublicKey, RSAPrivateKey rsaPrivateKey) {
+public record RsaKeysConfig(RSAPublicKey publicKey, RSAPrivateKey privateKey) {
 }
