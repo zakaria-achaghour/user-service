@@ -5,21 +5,24 @@ import com.zakaria.users.entities.AppUser;
 import com.zakaria.users.repositories.AppRoleRepository;
 import com.zakaria.users.repositories.AppUserRepository;
 import jakarta.transaction.Transactional;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
 @Service
 @Transactional
-@AllArgsConstructor
-@NoArgsConstructor
-public class AuthServiceImpl implements AuthService {
+public class AccountServiceImpl implements AccountService {
 
     private AppUserRepository appUserRepository;
     private AppRoleRepository appRoleRepository;
     private PasswordEncoder passwordEncoder;
+
+    public AccountServiceImpl(AppUserRepository appUserRepository, AppRoleRepository appRoleRepository, PasswordEncoder passwordEncoder) {
+        this.appUserRepository = appUserRepository;
+        this.appRoleRepository = appRoleRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
+
     @Override
     public AppUser addNewUser(String username, String password, String email, String confirmPassword) {
 

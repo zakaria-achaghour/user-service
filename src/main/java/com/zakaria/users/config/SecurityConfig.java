@@ -50,6 +50,7 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(ahr -> ahr.requestMatchers("/auth/login/**").permitAll())
+                .authorizeHttpRequests(ahr -> ahr.requestMatchers("/token/**").permitAll())
                 .authorizeHttpRequests(ahr -> ahr.anyRequest().authenticated())
                 //.httpBasic(Customizer.withDefaults())
                 .userDetailsService(userDetailsServiceImpl)

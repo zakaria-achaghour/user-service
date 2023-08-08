@@ -1,6 +1,7 @@
 package com.zakaria.users.services;
 
 
+import com.zakaria.users.entities.AppUser;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -16,10 +17,10 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    private AppAcocountService appAcocountService;
+    private AccountService appAcocountService;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        AppUser  appUser =  appAcocountService.loadUserByUsername(username);
+        AppUser appUser =  appAcocountService.loadUserByUsername(username);
         if (appUser == null) throw new UsernameNotFoundException(String.format("User %s not found" , username));
         //String[] roles = appUser.getRoles().stream().map(r -> r.getName()).toArray(String[]::new);
         List<SimpleGrantedAuthority> authorities = appUser.getRoles().stream().map(r -> new SimpleGrantedAuthority(r.getName())).collect(Collectors.toList());
